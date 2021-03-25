@@ -7,14 +7,14 @@ const CardContainer = styled.div`
   border-radius: 8px;
   display: flex;
   flex-direction: column;
-  box-shadow: 3px 3px 10px rgba(32, 169, 254, 0.16);
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.16);
   transform: scale(1);
-  transition: transform box-shadow ease-in-out 1s;
+  transition: all ease-in-out 500ms;
 
   :hover {
-    box-shadow: 3px 3px 15px rgba(32, 169, 254, 0.36);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.36);
     transform: scale(1.05);
-    transition: transform box-shadow ease-in-out 1s;
+    transition: all ease-in-out 500ms;
   }
 `;
 
