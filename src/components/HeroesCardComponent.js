@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 const CardContainer = styled.div`
-  width: 300px;
+  min-width: 250px;
+  max-width: 300px;
   height: 250px;
   border-radius: 8px;
   display: flex;
