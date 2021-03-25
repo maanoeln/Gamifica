@@ -1,4 +1,5 @@
 import React from 'react';
+import SearchBarComponent from './components/SearchBarComponent';
 import TopHeaderComponent from './components/TopHeaderComponent';
 import { AppContainer, GlobalStyle } from './global/globalStyled';
 
@@ -7,6 +8,7 @@ const App = () => {
     <AppContainer>
       <GlobalStyle />
       <TopHeaderComponent />
+      <SearchBarComponent />
     </AppContainer>
   );
 };
