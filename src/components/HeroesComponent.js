@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import HeroesCardComponent from './HeroesCardComponent';
 
 const Container = styled.div`
   width: 50%;
@@ -10,7 +11,11 @@ const Container = styled.div`
 `;
 
 const HeroesComponent = () => {
-  return <Container>Container</Container>;
+  return (
+    <Container>
+      <HeroesCardComponent />
+    </Container>
+  );
 };
 
 export default HeroesComponent;
