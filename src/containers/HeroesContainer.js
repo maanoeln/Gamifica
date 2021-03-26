@@ -4,6 +4,7 @@ import api from '../services/api';
 
 const HeroesContainer = () => {
   const [data, setData] = useState([]);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     api
@@ -12,7 +13,22 @@ const HeroesContainer = () => {
       .catch((error) => console.log(error));
   }, []);
 
-  return <HeroesComponent data={data} />;
+  const filteredProducts = data.filter((d) => {
+    const productName = d.name.toLowerCase();
+    return productName.indexOf(search.toLowerCase()) > -1;
+  });
+
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+  };
+
+  return (
+    <HeroesComponent
+      data={filteredProducts}
+      handleChange={(e) => handleChange(e)}
+      value={search}
+    />
+  );
 };
 
 export default HeroesContainer;
