@@ -13,7 +13,7 @@ const SearchContainer = styled.div`
   justify-content: center;
   z-index: 99;
   background-color: #292929;
-  box-shadow: 0 3px 20px rgba(0, 0, 0, 0.26);
+  box-shadow: 0 8px 10px 2px rgba(0, 0, 0, 0.16);
   margin-bottom: 16px;
   color: #fffffc;
 `;
@@ -41,7 +41,7 @@ const SearchBarComponent = () => {
     <SearchContainer>
       <SearchInputContainer>
         <Search fontSize="large" />
-        <input type="text" placeHolder="Digite o nome do super-herói" />
+        <input type="text" placeholder="Digite o nome do super-herói" />
       </SearchInputContainer>
     </SearchContainer>
   );
