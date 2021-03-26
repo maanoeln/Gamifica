@@ -19,18 +19,35 @@ const Grid = styled.div`
   margin: 16px auto 16px;
 `;
 
-const HeroesComponent = ({ data, handleChange, sort, sortData, value }) => {
+const HeroesComponent = ({
+  data,
+  handleChange,
+  handleFaves,
+  isFave,
+  setShowFave,
+  showFave,
+  sort,
+  sortData,
+  value,
+}) => {
   return (
     <Container>
       <SearchBarComponent
         handleChange={handleChange}
+        setShowFave={setShowFave}
+        showFave={showFave}
         sort={sort}
         sortData={sortData}
         value={value}
       />
       <Grid>
-        {data.map(({ id, ...d }) => (
-          <HeroesCardComponent key={id} data={d} />
+        {data.map((d) => (
+          <HeroesCardComponent
+            data={d}
+            handleFaves={handleFaves(d.id)}
+            isFave={isFave(d.id)}
+            key={d.id}
+          />
         ))}
       </Grid>
     </Container>
@@ -40,6 +57,10 @@ const HeroesComponent = ({ data, handleChange, sort, sortData, value }) => {
 HeroesComponent.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   handleChange: PropTypes.func.isRequired,
+  handleFaves: PropTypes.func.isRequired,
+  isFave: PropTypes.bool.isRequired,
+  setShowFave: PropTypes.func.isRequired,
+  showFave: PropTypes.bool.isRequired,
   sort: PropTypes.bool.isRequired,
   sortData: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
