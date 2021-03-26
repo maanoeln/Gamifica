@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 import HeroesCardComponent from './HeroesCardComponent';
@@ -12,29 +13,18 @@ const Container = styled.div`
   margin: 16px auto 16px;
 `;
 
-const HeroesComponent = () => {
+const HeroesComponent = ({ data }) => {
   return (
     <Container>
-      <HeroesCardComponent />
-      <HeroesCardComponent />
-      <HeroesCardComponent />
-      <HeroesCardComponent />
-      <HeroesCardComponent />
-      <HeroesCardComponent />
-      <HeroesCardComponent />
-      <HeroesCardComponent />
-      <HeroesCardComponent />
-      <HeroesCardComponent />
-      <HeroesCardComponent />
-      <HeroesCardComponent />
-      <HeroesCardComponent />
-      <HeroesCardComponent />
-      <HeroesCardComponent />
-      <HeroesCardComponent />
-      <HeroesCardComponent />
-      <HeroesCardComponent />
+      {data.map(({ id, ...d }) => (
+        <HeroesCardComponent key={id} data={d} />
+      ))}
     </Container>
   );
+};
+
+HeroesComponent.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 export default HeroesComponent;
