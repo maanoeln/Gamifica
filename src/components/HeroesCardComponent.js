@@ -1,32 +1,65 @@
+import { StarOutline } from '@material-ui/icons';
+import { PropTypes } from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 
+const FaveIcon = styled.div`
+  position: relative;
+  width: 100%;
+  display: none;
+  right: 20px;
+  top: 20px;
+  z-index: 999;
+  color: #ff4b3e;
+`;
+
 const CardContainer = styled.div`
-  min-width: 250px;
-  max-width: 300px;
-  height: 250px;
+  width: 300px;
+  height: 500px;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.16);
-  transform: scale(1);
-  transition: all ease-in-out 500ms;
 
-  :hover {
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.36);
-    transform: scale(1.05);
-    transition: all ease-in-out 500ms;
+  &:hover ${FaveIcon} {
+    display: flex;
+    justify-content: flex-end;
   }
 `;
 
-const HeroesCardComponent = () => {
+const ThumbnailContainer = styled.div`
+  border-radius: 8px 8px 0 0;
+  width: 300px;
+  height: 450px;
+  background-size: cover;
+  background-image: ${({ imgUrl }) => `url("${imgUrl}")`};
+`;
+
+const CharacterName = styled.h2`
+  align-self: center;
+  margin: 20px 0;
+`;
+
+const HeroesCardComponent = ({ data }) => {
+  const { thumbnail, name } = data;
+
+  const imageUrl = `${thumbnail.path}/portrait_uncanny.${thumbnail.extension}`;
+
   return (
     <CardContainer>
-      <div>Favoritar</div>
-      <h2>Super herois</h2>
-      <p>Super herois super poderes</p>
+      <ThumbnailContainer imgUrl={imageUrl}>
+        <FaveIcon>
+          <StarOutline fontSize="large" />
+        </FaveIcon>
+      </ThumbnailContainer>
+
+      <CharacterName>{name}</CharacterName>
     </CardContainer>
   );
+};
+
+HeroesCardComponent.protoTypes = {
+  data: PropTypes.shape({}).isRequired,
 };
 
 export default HeroesCardComponent;
