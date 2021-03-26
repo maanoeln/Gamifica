@@ -8,18 +8,36 @@ const sortData = (sort) => (characterOne, characterTwo) => {
   return sort && name1.localeCompare(name2);
 };
 
-const filterAndSortProducts = ({ data, search, sort }) =>
+const filterAndSortProducts = ({ data, search, sort, faves, showFave }) =>
   data
     .filter((d) => {
       const productName = d.name.toLowerCase();
       return productName.indexOf(search.toLowerCase()) > -1;
     })
+    .filter((d) => (showFave ? faves.includes(d.id) : d))
     .sort(sortData(sort));
+
+const handleFaves = ({ faves, setFaves }) => (id) => () => {
+  if (faves.includes(id)) {
+    const newFaves = faves.filter((f) => f !== id);
+    return setFaves(newFaves);
+  }
+
+  if (faves.length === 5) {
+    return alert('Voce nao pode adicionar mais favoritos');
+  }
+
+  return setFaves((state) => [...state, id]);
+};
+
+const isFave = (faves) => (id) => () => (faves.includes(id) ? true : false);
 
 const HeroesContainer = () => {
   const [data, setData] = useState([]);
   const [search, setSearch] = useState('');
   const [sort, setSort] = useState(false);
+  const [faves, setFaves] = useState([]);
+  const [showFave, setShowFave] = useState(false);
 
   useEffect(() => {
     api
@@ -34,9 +52,13 @@ const HeroesContainer = () => {
 
   return (
     <HeroesComponent
-      data={filterAndSortProducts({ data, search, sort })}
+      data={filterAndSortProducts({ data, search, sort, faves, showFave })}
+      showFave={showFave}
       handleChange={(e) => handleChange(e)}
+      handleFaves={handleFaves({ faves, setFaves })}
+      isFave={isFave(faves)}
       value={search}
+      setShowFave={() => setShowFave((state) => !state)}
       sortData={() => setSort((state) => !state)}
       sort={sort}
     />
