@@ -1,7 +1,7 @@
 import React from 'react';
-import HeroesComponent from './components/HeroesComponent';
 import SearchBarComponent from './components/SearchBarComponent';
 import TopHeaderComponent from './components/TopHeaderComponent';
+import HeroesContainer from './containers/HeroesContainer';
 import { AppContainer, GlobalStyle } from './global/globalStyled';
 
 const App = () => {
@@ -10,7 +10,7 @@ const App = () => {
       <GlobalStyle />
       <TopHeaderComponent />
       <SearchBarComponent />
-      <HeroesComponent />
+      <HeroesContainer />
     </AppContainer>
   );
 };
