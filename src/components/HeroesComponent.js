@@ -19,10 +19,15 @@ const Grid = styled.div`
   margin: 16px auto 16px;
 `;
 
-const HeroesComponent = ({ data, handleChange, value }) => {
+const HeroesComponent = ({ data, handleChange, sort, sortData, value }) => {
   return (
     <Container>
-      <SearchBarComponent handleChange={handleChange} value={value} />
+      <SearchBarComponent
+        handleChange={handleChange}
+        sort={sort}
+        sortData={sortData}
+        value={value}
+      />
       <Grid>
         {data.map(({ id, ...d }) => (
           <HeroesCardComponent key={id} data={d} />
@@ -35,6 +40,8 @@ const HeroesComponent = ({ data, handleChange, value }) => {
 HeroesComponent.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   handleChange: PropTypes.func.isRequired,
+  sort: PropTypes.bool.isRequired,
+  sortData: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
 };
 

@@ -1,4 +1,4 @@
-import { Search } from '@material-ui/icons';
+import { Search, SortByAlpha, Star } from '@material-ui/icons';
 import { PropTypes } from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
@@ -37,7 +37,26 @@ const SearchInputContainer = styled.div`
   }
 `;
 
-const SearchBarComponent = ({ handleChange, value }) => {
+const FilterContainer = styled.div`
+  width: 80px;
+  margin-left: 20px;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const CustomStar = styled(Star)`
+  color: ${({ isSelected }) => (isSelected ? '#20a9fe' : '#fffffc')};
+`;
+
+const CustomAlpha = styled(SortByAlpha)`
+  color: ${({ isSelected }) => (isSelected ? '#20a9fe' : '#fffffc')};
+
+  :hover {
+    cursor: pointer;
+  }
+`;
+
+const SearchBarComponent = ({ handleChange, sort, sortData, value }) => {
   return (
     <SearchContainer>
       <SearchInputContainer>
@@ -49,12 +68,19 @@ const SearchBarComponent = ({ handleChange, value }) => {
           placeholder="Digite o nome do super-herói"
         />
       </SearchInputContainer>
+
+      <FilterContainer>
+        <CustomAlpha isSelected={sort} fontSize="large" onClick={sortData} />
+        <CustomStar fontSize="large" />
+      </FilterContainer>
     </SearchContainer>
   );
 };
 
 SearchBarComponent.propTypes = {
   handleChange: PropTypes.func.isRequired,
+  sort: PropTypes.bool.isRequired,
+  sortData: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
 };
 
