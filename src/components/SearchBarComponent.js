@@ -45,33 +45,48 @@ const FilterContainer = styled.div`
 `;
 
 const CustomStar = styled(Star)`
-  color: ${({ isSelected }) => (isSelected ? '#20a9fe' : '#fffffc')};
-`;
-
-const CustomAlpha = styled(SortByAlpha)`
-  color: ${({ isSelected }) => (isSelected ? '#20a9fe' : '#fffffc')};
+  color: ${({ isClicked }) => (isClicked ? '#20a9fe' : '#fffffc')};
 
   :hover {
     cursor: pointer;
   }
 `;
 
-const SearchBarComponent = ({ handleChange, sort, sortData, value }) => {
+const CustomAlpha = styled(SortByAlpha)`
+  color: ${({ isClicked }) => (isClicked ? '#20a9fe' : '#fffffc')};
+
+  :hover {
+    cursor: pointer;
+  }
+`;
+
+const SearchBarComponent = ({
+  handleChange,
+  setShowFave,
+  showFave,
+  sort,
+  sortData,
+  value,
+}) => {
   return (
     <SearchContainer>
       <SearchInputContainer>
         <Search fontSize="large" />
         <input
-          type="text"
           onChange={handleChange}
-          value={value}
           placeholder="Digite o nome do super-herói"
+          type="text"
+          value={value}
         />
       </SearchInputContainer>
 
       <FilterContainer>
-        <CustomAlpha isSelected={sort} fontSize="large" onClick={sortData} />
-        <CustomStar fontSize="large" />
+        <CustomAlpha fontSize="large" isClicked={sort} onClick={sortData} />
+        <CustomStar
+          fontSize="large"
+          isClicked={showFave}
+          onClick={setShowFave}
+        />
       </FilterContainer>
     </SearchContainer>
   );
@@ -79,6 +94,8 @@ const SearchBarComponent = ({ handleChange, sort, sortData, value }) => {
 
 SearchBarComponent.propTypes = {
   handleChange: PropTypes.func.isRequired,
+  setShowFave: PropTypes.func.isRequired,
+  showFave: PropTypes.bool.isRequired,
   sort: PropTypes.bool.isRequired,
   sortData: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
