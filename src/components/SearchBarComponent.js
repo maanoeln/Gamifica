@@ -1,4 +1,5 @@
 import { Search } from '@material-ui/icons';
+import { PropTypes } from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -36,15 +37,25 @@ const SearchInputContainer = styled.div`
   }
 `;
 
-const SearchBarComponent = () => {
+const SearchBarComponent = ({ handleChange, value }) => {
   return (
     <SearchContainer>
       <SearchInputContainer>
         <Search fontSize="large" />
-        <input type="text" placeholder="Digite o nome do super-herói" />
+        <input
+          type="text"
+          onChange={handleChange}
+          value={value}
+          placeholder="Digite o nome do super-herói"
+        />
       </SearchInputContainer>
     </SearchContainer>
   );
+};
+
+SearchBarComponent.propTypes = {
+  handleChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
 };
 
 export default SearchBarComponent;
