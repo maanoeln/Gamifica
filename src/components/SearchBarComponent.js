@@ -7,7 +7,7 @@ const SearchContainer = styled.div`
   position: -webkit-sticky; /* Safari */
   position: sticky;
   width: 100%;
-  top: 0;
+  top: -1px;
   height: 100px;
   display: flex;
   align-items: center;
