@@ -9,7 +9,7 @@ const FaveIcon = styled.div`
   display: none;
   right: 20px;
   top: 20px;
-  z-index: 999;
+  z-index: 2;
   color: #ff4b3e;
 `;
 
