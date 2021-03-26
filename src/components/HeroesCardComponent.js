@@ -1,4 +1,4 @@
-import { StarOutline } from '@material-ui/icons';
+import { Star, StarOutline } from '@material-ui/icons';
 import { PropTypes } from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
@@ -40,7 +40,7 @@ const CharacterName = styled.h2`
   margin: 20px 0;
 `;
 
-const HeroesCardComponent = ({ data }) => {
+const HeroesCardComponent = ({ data, handleFaves, isFave }) => {
   const { thumbnail, name } = data;
 
   const imageUrl = `${thumbnail.path}/portrait_uncanny.${thumbnail.extension}`;
@@ -49,7 +49,11 @@ const HeroesCardComponent = ({ data }) => {
     <CardContainer>
       <ThumbnailContainer imgUrl={imageUrl}>
         <FaveIcon>
-          <StarOutline fontSize="large" />
+          {isFave() ? (
+            <Star fontSize="large" onClick={handleFaves} />
+          ) : (
+            <StarOutline fontSize="large" onClick={handleFaves} />
+          )}
         </FaveIcon>
       </ThumbnailContainer>
 
@@ -60,6 +64,8 @@ const HeroesCardComponent = ({ data }) => {
 
 HeroesCardComponent.protoTypes = {
   data: PropTypes.shape({}).isRequired,
+  handleFaves: PropTypes.func.isRequired,
+  isFave: PropTypes.bool.isRequired,
 };
 
 export default HeroesCardComponent;
