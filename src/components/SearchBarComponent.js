@@ -4,7 +4,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const SearchContainer = styled.div`
-  position: -webkit-sticky; /* Safari */
+  position: -webkit-sticky;
   position: sticky;
   width: 100%;
   top: -1px;
@@ -17,6 +17,11 @@ const SearchContainer = styled.div`
   box-shadow: 0 8px 10px 2px rgba(0, 0, 0, 0.16);
   margin-bottom: 16px;
   color: #fffffc;
+
+  @media (min-width: 320px) and (max-width: 420px) {
+    flex-direction: column;
+    height: 140px;
+  }
 `;
 
 const SearchInputContainer = styled.div`
@@ -26,7 +31,7 @@ const SearchInputContainer = styled.div`
   display: flex;
   padding-right: 8px;
 
-  & input {
+  input {
     width: 100%;
     outline: none;
     border: none;
@@ -35,6 +40,20 @@ const SearchInputContainer = styled.div`
     color: #fffffc;
     background-color: transparent;
   }
+
+  @media (min-width: 320px) and (max-width: 420px) {
+    margin-top: 20px;
+    width: 80%;
+  }
+
+  @media (min-width: 421px) and (max-width: 950px) {
+    margin-top: 20px;
+    width: 50%;
+  }
+  @media (min-width: 950px) and (max-width: 1200px) {
+    margin-top: 20px;
+    width: 50%;
+  }
 `;
 
 const FilterContainer = styled.div`
@@ -42,6 +61,10 @@ const FilterContainer = styled.div`
   margin-left: 20px;
   display: flex;
   justify-content: space-between;
+
+  @media (min-width: 320px) and (max-width: 420px) {
+    margin: 20px 0;
+  }
 `;
 
 const CustomStar = styled(Star)`
