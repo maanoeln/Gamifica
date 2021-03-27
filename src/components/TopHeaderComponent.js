@@ -8,7 +8,7 @@ const HeaderContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
+  top: 0;
   & h1 {
     color: #20a9fe;
     transition: color ease-in-out 2s;
