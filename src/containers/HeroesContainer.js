@@ -44,6 +44,7 @@ const HeroesContainer = ({ history }) => {
 
   useEffect(() => {
     setFaves(persistedFaves ? persistedFaves : []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setFaves]);
 
   const handleChange = (e) => {
