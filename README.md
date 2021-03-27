@@ -111,7 +111,7 @@ _PS: Caso utilize o NPM, apague o arquivo `yarn.lock` para ter todas as dependê
 
 ## 🚀 Projeto no ar
 
-[Gamifica Challenge](gamifica-challenge.surge.sh)
+[Gamifica Challenge](gamifica-marvel.surge.sh)
 
 ---
 
