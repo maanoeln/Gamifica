@@ -38,12 +38,12 @@ const Grid = styled.div`
 const HeroesComponent = ({
   data,
   handleChange,
+  handleCharacterInfoPage,
   setShowFave,
   showFave,
   sort,
   sortData,
   value,
-  handleCharacterInfoPage,
 }) => {
   return (
     <Container>
@@ -71,14 +71,12 @@ const HeroesComponent = ({
 HeroesComponent.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   handleChange: PropTypes.func.isRequired,
-  handleFaves: PropTypes.func.isRequired,
-  isFave: PropTypes.func.isRequired,
+  handleCharacterInfoPage: PropTypes.func.isRequired,
   setShowFave: PropTypes.func.isRequired,
   showFave: PropTypes.bool.isRequired,
   sort: PropTypes.bool.isRequired,
   sortData: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
-  handleCharacterInfoPage: PropTypes.func.isRequired,
 };
 
 export default HeroesComponent;
