@@ -1,6 +1,6 @@
 import React from 'react';
 import { Router } from 'react-router-dom';
-import TopHeaderComponent from './components/TopHeaderComponent';
+import TopHeaderContainer from './containers/TopHeaderContainer';
 import { FaveProvider } from './context/FavesProvider';
 import { GlobalStyle } from './global/globalStyled';
 import history from './routes/history';
@@ -11,7 +11,7 @@ const App = () => {
     <FaveProvider>
       <Router history={history}>
         <GlobalStyle />
-        <TopHeaderComponent />
+        <TopHeaderContainer />
         <Routes />
       </Router>
     </FaveProvider>
