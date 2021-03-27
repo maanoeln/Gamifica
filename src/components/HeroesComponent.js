@@ -7,28 +7,27 @@ import SearchBarComponent from './SearchBarComponent';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Grid = styled.div`
-  margin-top: 16px;
-  width: 80%;
   min-height: 100%;
   display: grid;
   gap: 24px;
   grid-template-columns: repeat(5, 1fr);
-  margin: 16px auto 16px;
+  margin: 16px auto;
 `;
 
 const HeroesComponent = ({
   data,
   handleChange,
-  handleFaves,
-  isFave,
   setShowFave,
   showFave,
   sort,
   sortData,
   value,
+  handleCharacterInfoPage,
 }) => {
   return (
     <Container>
@@ -44,9 +43,8 @@ const HeroesComponent = ({
         {data.map((d) => (
           <HeroesCardComponent
             data={d}
-            handleFaves={handleFaves(d.id)}
-            isFave={isFave(d.id)}
             key={d.id}
+            handleCharacterInfoPage={handleCharacterInfoPage(d.id)}
           />
         ))}
       </Grid>
@@ -58,12 +56,13 @@ HeroesComponent.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   handleChange: PropTypes.func.isRequired,
   handleFaves: PropTypes.func.isRequired,
-  isFave: PropTypes.bool.isRequired,
+  isFave: PropTypes.func.isRequired,
   setShowFave: PropTypes.func.isRequired,
   showFave: PropTypes.bool.isRequired,
   sort: PropTypes.bool.isRequired,
   sortData: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
+  handleCharacterInfoPage: PropTypes.func.isRequired,
 };
 
 export default HeroesComponent;
