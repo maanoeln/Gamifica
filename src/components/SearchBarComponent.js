@@ -68,7 +68,7 @@ const FilterContainer = styled.div`
 `;
 
 const CustomStar = styled(Star)`
-  color: ${({ $isSelected }) => ($isSelected ? '#20a9fe' : '#fffffc')};
+  color: ${({ $isSelected }) => ($isSelected ? `#20a9fe` : `#fffffc`)};
 
   :hover {
     cursor: pointer;
@@ -76,7 +76,7 @@ const CustomStar = styled(Star)`
 `;
 
 const CustomAlpha = styled(SortByAlpha)`
-  color: ${({ $isSelected }) => ($isSelected ? '#20a9fe' : '#fffffc')};
+  color: ${({ $isSelected }) => ($isSelected ? `#20a9fe` : `#fffffc`)};
 
   :hover {
     cursor: pointer;
@@ -90,36 +90,34 @@ const SearchBarComponent = ({
   sort,
   sortData,
   value,
-}) => {
-  return (
-    <SearchContainer>
-      <SearchInputContainer>
-        <Search fontSize="large" />
-        <input
-          onChange={handleChange}
-          placeholder="Digite o nome do super-herói"
-          type="text"
-          value={value}
-        />
-      </SearchInputContainer>
+}) => (
+  <SearchContainer>
+    <SearchInputContainer>
+      <Search fontSize="large" />
+      <input
+        onChange={handleChange}
+        placeholder="Digite o nome do super-herói"
+        type="text"
+        value={value}
+      />
+    </SearchInputContainer>
 
-      <FilterContainer>
-        <CustomAlpha
-          fontSize="large"
-          $isSelected={sort}
-          onClick={sortData}
-          data-testid={'sortData'}
-        />
-        <CustomStar
-          fontSize="large"
-          $isSelected={showFave}
-          onClick={setShowFave}
-          data-testid={'getFaves'}
-        />
-      </FilterContainer>
-    </SearchContainer>
-  );
-};
+    <FilterContainer>
+      <CustomAlpha
+        fontSize="large"
+        $isSelected={sort}
+        onClick={sortData}
+        data-testid="sortData"
+      />
+      <CustomStar
+        fontSize="large"
+        $isSelected={showFave}
+        onClick={setShowFave}
+        data-testid="getFaves"
+      />
+    </FilterContainer>
+  </SearchContainer>
+);
 
 SearchBarComponent.propTypes = {
   handleChange: PropTypes.func.isRequired,

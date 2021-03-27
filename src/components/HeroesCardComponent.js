@@ -66,8 +66,15 @@ const HeroesCardComponent = ({ data, handleCharacterInfoPage }) => {
   );
 };
 
-HeroesCardComponent.protoTypes = {
-  data: PropTypes.shape({}).isRequired,
+HeroesCardComponent.propTypes = {
+  data: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    thumbnail: PropTypes.shape({
+      path: PropTypes.string.isRequired,
+      extension: PropTypes.string.isRequired,
+    }).isRequired,
+    name: PropTypes.string.isRequired,
+  }).isRequired,
   handleCharacterInfoPage: PropTypes.func.isRequired,
 };
 

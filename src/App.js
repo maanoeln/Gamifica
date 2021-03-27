@@ -8,17 +8,15 @@ import { GlobalStyle } from './global/globalStyled';
 import history from './routes/history';
 import Routes from './routes/routes';
 
-const App = () => {
-  return (
-    <FaveProvider>
-      <Router history={history}>
-        <GlobalStyle />
-        <TopHeaderContainer />
-        <Routes />
-        <ToastContainer style={{ zIndex: 999, opacity: 1 }} />
-      </Router>
-    </FaveProvider>
-  );
-};
+const App = () => (
+  <FaveProvider>
+    <Router history={history}>
+      <GlobalStyle />
+      <TopHeaderContainer />
+      <Routes />
+      <ToastContainer style={{ zIndex: 999, opacity: 1 }} />
+    </Router>
+  </FaveProvider>
+);
 
 export default App;

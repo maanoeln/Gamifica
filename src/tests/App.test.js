@@ -8,13 +8,12 @@ import renderComponent, {
 } from '../__mocks__/renderWithProvider';
 
 let apiMock;
-const history = { push: jest.fn(), goBack: jest.fn() };
 
 const mockGoBack = jest.fn();
 const mockPush = jest.fn();
 
-jest.mock('react-router', () => ({
-  ...jest.requireActual('react-router'),
+jest.mock(`react-router`, () => ({
+  ...jest.requireActual(`react-router`),
   useHistory: () => ({
     goBack: mockGoBack,
     push: mockPush,
@@ -22,8 +21,8 @@ jest.mock('react-router', () => ({
   }),
 }));
 
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
+jest.mock(`react-router-dom`, () => ({
+  ...jest.requireActual(`react-router-dom`),
   useHistory: () => ({
     goBack: mockGoBack,
     push: mockPush,
@@ -31,11 +30,11 @@ jest.mock('react-router-dom', () => ({
   }),
 }));
 
-const title = 'Gamifica';
-const placeholder = 'Digite o nome do super-herói';
-const baseUrl = '/characters';
+const title = `Gamifica`;
+const placeholder = `Digite o nome do super-herói`;
+const baseUrl = `/characters`;
 
-describe('HeroesContainer', () => {
+describe(`HeroesContainer`, () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.resetAllMocks();
@@ -46,7 +45,7 @@ describe('HeroesContainer', () => {
     apiMock = new MockAdapter(api);
   });
 
-  test('When occur error in get shoul show message', async () => {
+  test(`When occur error in get shoul show message`, async () => {
     apiMock.onGet(baseUrl).reply(400);
 
     const { getByText } = screen;
@@ -56,11 +55,11 @@ describe('HeroesContainer', () => {
 
     await waitFor(() => expect(apiMock.history.get.length).toBe(0));
     await waitFor(() =>
-      expect(getByText('Erro ao buscar os dados')).toBeInTheDocument()
+      expect(getByText(`Erro ao buscar os dados`)).toBeInTheDocument(),
     );
   });
 
-  test('Should request saved data', async () => {
+  test(`Should request saved data`, async () => {
     apiMock.onGet(baseUrl).reply(200, data);
 
     const { getByText, getByPlaceholderText } = screen;

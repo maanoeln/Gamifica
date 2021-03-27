@@ -24,13 +24,11 @@ const HeaderContainer = styled.div`
   }
 `;
 
-const TopHeaderComponent = ({ goToHome }) => {
-  return (
-    <HeaderContainer>
-      <h1 onClick={goToHome}>Gamifica</h1>
-    </HeaderContainer>
-  );
-};
+const TopHeaderComponent = ({ goToHome }) => (
+  <HeaderContainer>
+    <h1 onClick={goToHome}>Gamifica</h1>
+  </HeaderContainer>
+);
 
 TopHeaderComponent.propTypes = {
   goToHome: PropTypes.func.isRequired,

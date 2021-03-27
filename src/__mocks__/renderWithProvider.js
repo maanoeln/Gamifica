@@ -1,4 +1,5 @@
 import { render } from '@testing-library/react';
+import React from 'react';
 import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import TopHeaderContainer from '../containers/TopHeaderContainer';
@@ -11,9 +12,9 @@ const renderComponent = (
     history = { goBack: jest.fn(), push: jest.fn() },
     ...props
   },
-  fn = render
-) => {
-  return fn(
+  fn = render,
+) =>
+  fn(
     <FaveProvider>
       <BrowserRouter>
         <MemoryRouter>
@@ -22,9 +23,8 @@ const renderComponent = (
           <ToastContainer style={{ zIndex: 999, opacity: 1 }} />
         </MemoryRouter>
       </BrowserRouter>
-    </FaveProvider>
+    </FaveProvider>,
   );
-};
 
 export const renderAppComponent = (
   WrappedComponent,
@@ -33,9 +33,9 @@ export const renderAppComponent = (
     history = { goBack: jest.fn(), push: jest.fn() },
     ...props
   },
-  fn = render
-) => {
-  return fn(
+  fn = render,
+) =>
+  fn(
     <FaveProvider>
       <BrowserRouter>
         <MemoryRouter>
@@ -43,8 +43,7 @@ export const renderAppComponent = (
           <ToastContainer style={{ zIndex: 999, opacity: 1 }} />
         </MemoryRouter>
       </BrowserRouter>
-    </FaveProvider>
+    </FaveProvider>,
   );
-};
 
 export default renderComponent;

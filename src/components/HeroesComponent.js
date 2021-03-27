@@ -49,36 +49,34 @@ const HeroesComponent = ({
   sortData,
   totalPages,
   value,
-}) => {
-  return (
-    <Container>
-      <SearchBarComponent
-        handleChange={handleChange}
-        setShowFave={setShowFave}
-        showFave={showFave}
-        sort={sort}
-        sortData={sortData}
-        value={value}
-      />
-      <Grid>
-        {data.map((d) => (
-          <HeroesCardComponent
-            data={d}
-            key={d.id}
-            handleCharacterInfoPage={handleCharacterInfoPage(d.id)}
-          />
-        ))}
-      </Grid>
+}) => (
+  <Container>
+    <SearchBarComponent
+      handleChange={handleChange}
+      setShowFave={setShowFave}
+      showFave={showFave}
+      sort={sort}
+      sortData={sortData}
+      value={value}
+    />
+    <Grid>
+      {data.map(d => (
+        <HeroesCardComponent
+          data={d}
+          key={d.id}
+          handleCharacterInfoPage={handleCharacterInfoPage(d.id)}
+        />
+      ))}
+    </Grid>
 
-      <PaginationContainer
-        totalPages={totalPages}
-        handlePage={handlePage}
-        handleSetPage={handleSetPage}
-        activePage={activePage}
-      />
-    </Container>
-  );
-};
+    <PaginationContainer
+      totalPages={totalPages}
+      handlePage={handlePage}
+      handleSetPage={handleSetPage}
+      activePage={activePage}
+    />
+  </Container>
+);
 
 HeroesComponent.propTypes = {
   activePage: PropTypes.number.isRequired,

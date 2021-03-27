@@ -173,7 +173,7 @@ const HeroesInfoComponent = ({ character, comics, handleGoBack }) => {
             <h3>
               {description.length
                 ? description
-                : 'Não há descrição para esse personagem'}
+                : `Não há descrição para esse personagem`}
             </h3>
           </SingleInfoContainer>
 
@@ -184,10 +184,10 @@ const HeroesInfoComponent = ({ character, comics, handleGoBack }) => {
                 comics.map(
                   ({ title }, idx) =>
                     idx < 10 && (
-                      <LastComics key={`${idx}-${title}`}>
+                      <LastComics key={`${title}`}>
                         <h3>{title}</h3>
                       </LastComics>
-                    )
+                    ),
                 )
               ) : (
                 <h3>Não há quadrinhos para esse personagem</h3>
@@ -209,7 +209,15 @@ const HeroesInfoComponent = ({ character, comics, handleGoBack }) => {
 };
 
 HeroesInfoComponent.propTypes = {
-  character: PropTypes.shape({}).isRequired,
+  character: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    thumbnail: PropTypes.shape({
+      extension: PropTypes.string.isRequired,
+      path: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
   comics: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   handleGoBack: PropTypes.func.isRequired,
 };

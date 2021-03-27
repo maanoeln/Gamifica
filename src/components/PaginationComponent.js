@@ -27,27 +27,23 @@ const PaginationComponent = ({
   handlePage,
   handleSetPage,
   pages,
-}) => {
-  return (
-    <PaginationContainer>
-      <PageNumber
-        onClick={() => handlePage({ type: 'BACKWARD', page: activePage })}
-      >
-        {'<'}
+}) => (
+  <PaginationContainer>
+    <PageNumber
+      onClick={() => handlePage({ type: `BACKWARD`, page: activePage })}
+    >
+      {`<`}
+    </PageNumber>
+    {pages.map(p => (
+      <PageNumber key={p} onClick={() => handleSetPage(p)}>
+        {p}
       </PageNumber>
-      {pages.map((p) => (
-        <PageNumber key={p} onClick={() => handleSetPage(p)}>
-          {p}
-        </PageNumber>
-      ))}
-      <PageNumber
-        onClick={() => handlePage({ type: 'FORWARD', page: activePage })}
-      >
-        {'>'}
-      </PageNumber>
-    </PaginationContainer>
-  );
-};
+    ))}
+    <PageNumber
+      onClick={() => handlePage({ type: `FORWARD`, page: activePage })}
+    >{`>`}</PageNumber>
+  </PaginationContainer>
+);
 
 PaginationComponent.defaultProps = {
   activePage: 1,
@@ -57,6 +53,6 @@ PaginationComponent.propTypes = {
   activePage: PropTypes.number,
   handlePage: PropTypes.func.isRequired,
   handleSetPage: PropTypes.func.isRequired,
-  totalPages: PropTypes.number.isRequired,
+  pages: PropTypes.arrayOf(PropTypes.number).isRequired,
 };
 export default PaginationComponent;
