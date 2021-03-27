@@ -3,16 +3,24 @@ import styled from 'styled-components';
 import FaveContainer from '../containers/FaveContainer';
 
 const Container = styled.div`
-  width: 50%;
+  width: 90%;
   height: 100%;
   margin: 24px auto;
   padding: 20px 0;
   display: flex;
+
+  @media (min-width: 320px) and (max-width: 880px) {
+    align-items: center;
+    flex-direction: column;
+    width: 90%;
+  }
 `;
 
 const PictureContainer = styled.div`
+  align-self: center;
   width: 300px;
   height: 450px;
+  margin-right: 20px;
   background-image: ${({ imgUrl }) => `url("${imgUrl}")`};
   border-radius: 16px 0 16px 0;
 `;
@@ -22,6 +30,16 @@ const InfoContainer = styled.div`
   flex-direction: column;
   flex: 1;
   margin: 0 16px 16px;
+
+  @media (min-width: 320px) and (max-width: 880px) {
+    width: 90%;
+    margin: 20px 0;
+  }
+
+  @media (min-width: 881px) {
+    width: 60%;
+    margin: 20px 0;
+  }
 `;
 
 const SingleInfoContainer = styled.div`
@@ -48,19 +66,32 @@ const Row = styled.div`
 
 const LastComics = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  width: 300px;
   margin-top: 5px;
-  width: 200px;
   background-color: white;
   padding: 10px;
   border-radius: 8px;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.26);
 
   h3 {
+    width: 200px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    align-self: center;
+    text-align: center;
+  }
+
+  @media only screen and (max-width: 1000px) {
+    width: 100%;
+    h3 {
+      width: 100%;
+    }
+  }
+
+  @media only screen and (min-width: 1200px) {
+    width: 300px;
   }
 `;
 const HeroesInfoComponent = ({ character, comics }) => {
