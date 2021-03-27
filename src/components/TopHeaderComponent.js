@@ -1,3 +1,4 @@
+import { PropTypes } from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -23,12 +24,16 @@ const HeaderContainer = styled.div`
   }
 `;
 
-const TopHeaderComponent = () => {
+const TopHeaderComponent = ({ goToHome }) => {
   return (
     <HeaderContainer>
-      <h1>Marvelifica</h1>
+      <h1 onClick={goToHome}>Gamifica</h1>
     </HeaderContainer>
   );
+};
+
+TopHeaderComponent.propTypes = {
+  goToHome: PropTypes.func.isRequired,
 };
 
 export default TopHeaderComponent;
