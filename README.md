@@ -1,70 +1,133 @@
-# Getting Started with Create React App
+<h1 align="center">
+  🚀️ Desafio Front-End Gamifica
+</h1>
+<p align="center">
+  <a href="https://www.linkedin.com/in/manoelqueiroz/">
+    <img alt="Made by Manoel" src="https://img.shields.io/badge/made%20by-Manoel%20Neto-green">
+  </a>
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
 
-## Available Scripts
+# Indice
 
-In the project directory, you can run:
+- :rocket: [Sobre o Projeto](#rocket-sobre-o-projeto)
+- 👨‍💻️ [Tecnogias utilizadas](#%EF%B8%8F-tecnogias-utilizadas)
+- 📦️ [Como utilizar o projeto](#%EF%B8%8F-como-utilizar-o-projeto)
+- 🤔️ [Como contribuir](#%EF%B8%8F-como-contribuir)
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## :rocket: Sobre o Projeto
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+A proposta do **Desafio Gamifica** é desenvolver uma aplicação web utilizando a API da mervel para listar os personagens. Além de poder favoritar no máximo 5 personagens, e abrir um nova tela contendo as informações do personagem e os últimos 10 quadrinhos em que o mesmo apareceu por ordem de data de venda.
 
-### `npm test`
+Este projeto de Front-end Web foi desenvolvido em ReactJS com JS.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 👨‍💻️ Tecnogias utilizadas
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+O projeto foi desenvolvido utilizando as seguintes tecnologias:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- [ReactJS](https://reactjs.org/)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Dependências
 
-### `npm run eject`
+- [Material-ui](https://material-ui.com)
+- [React Router DOM](https://github.com/ReactTraining/react-router#readme)
+- 💅 [Styled Components](https://styled-components.com/)
+- [Axios](https://github.com/axios/axios)
+- [Axios Mock Adapter](https://github.com/ctimmerm/axios-mock-adapter#readme)
+- [History](https://github.com/ReactTraining/history#readme)
+- [PropTypes](https://www.npmjs.com/package/prop-types)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Padronização de código
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- [ESLint](https://eslint.org/)
+- [Prettier](https://prettier.io/)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### IDE
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- [Visual Studio Code](https://code.visualstudio.com/)
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 📦️ Como utilizar o projeto
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Para copiar o projeto, utilize os comandos:
 
-### Code Splitting
+```bash
+  # Clonar o repositório
+  ❯ git clone https://github.com/maanoeln/Gamifica.git
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+  # Entrar no diretório
+  ❯ cd Gamifica
+```
 
-### Analyzing the Bundle Size
+Para instalar as dependências e iniciar o projeto, você pode utilizar o Yarn ou NPM:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+**Utilizando yarn**
 
-### Making a Progressive Web App
+```bash
+  # Instalar as dependências
+  ❯ yarn
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+  # Iniciar o projeto
+  ❯ yarn start
 
-### Advanced Configuration
+  # Rodar os testes
+  ❯ yarn test
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+**Utilizando npm**
 
-### Deployment
+_PS: Caso utilize o NPM, apague o arquivo `yarn.lock` para ter todas as dependências instaladas da melhor forma._
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```bash
+  # Instalar as dependências
+  ❯ npm install
 
-### `npm run build` fails to minify
+  # Iniciar o projeto
+  ❯ npm start
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  # Rodas os testes
+  ❯ npm test -- --coverage
+```
+
+---
+
+## 🤔️ Como contribuir
+
+1. Faça o `fork` deste repositório
+2. Crie uma branch com sua feature:
+   - `$ git checkout -b minha_feature`
+3. Confirme sua branch:
+   - `$ git commit -m "feature: Meu novo recurso"`
+4. Envie sua branch:
+   - `$ git push origin minha_feature`
+
+---
+
+## 🚀 Projeto no ar
+
+[Gamifica Challenge](gamifica-challenge.surge.sh)
+
+---
+
+<h4 align="center">
+  Feito com :heart: por Manoel Neto 👋️ <a href="mailto:mneto_004@hotmail.com">Entre em contato!</a>
+</h4>
+
+<p align="center">
+  <a href="https://www.linkedin.com/in/manoelqueiroz/" target="_blank">
+    <img alt="Manoel Neto" src="https://img.shields.io/badge/LinkedIn-Manoel%20Neto-green?style=flat&logoColor=white&logo=linkedin">
+  </a>
+
+  <a href="https://www.facebook.com/maanoeln/" target="_blank">
+    <img alt="Manoel Neto" src="https://img.shields.io/badge/Facebook-Manoel%20Neto-green?style=flat&logoColor=white&logo=facebook">
+  </a>
+  <a href="https://www.instagram.com/_maanoeln/" target="_blank">
+    <img alt="Manoel Neto" src="https://img.shields.io/badge/Instagram-Manoel%20Neto-green?style=flat&logoColor=white&logo=instagram">
+  </a>
+</p>
