@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import HeroesComponent from '../components/HeroesComponent';
+import { useFave } from '../context/FavesProvider';
 import api from '../services/api';
 
 const sortData = (sort) => (characterOne, characterTwo) => {
@@ -17,27 +18,16 @@ const filterAndSortProducts = ({ data, search, sort, faves, showFave }) =>
     .filter((d) => (showFave ? faves.includes(d.id) : d))
     .sort(sortData(sort));
 
-const handleFaves = ({ faves, setFaves }) => (id) => () => {
-  if (faves.includes(id)) {
-    const newFaves = faves.filter((f) => f !== id);
-    return setFaves(newFaves);
-  }
-
-  if (faves.length === 5) {
-    return alert('Voce nao pode adicionar mais favoritos');
-  }
-
-  return setFaves((state) => [...state, id]);
+const handleCharacterInfoPage = (history) => (id) => () => {
+  history.push(`/character/${id}`);
 };
 
-const isFave = (faves) => (id) => () => (faves.includes(id) ? true : false);
-
-const HeroesContainer = () => {
+const HeroesContainer = ({ history }) => {
   const [data, setData] = useState([]);
   const [search, setSearch] = useState('');
   const [sort, setSort] = useState(false);
-  const [faves, setFaves] = useState([]);
   const [showFave, setShowFave] = useState(false);
+  const { faves, setFaves } = useFave();
 
   useEffect(() => {
     api
@@ -45,6 +35,16 @@ const HeroesContainer = () => {
       .then((response) => setData(response.data.data.results))
       .catch((error) => console.log(error));
   }, []);
+
+  if (faves.length) {
+    localStorage.setItem('faves', JSON.stringify(faves));
+  }
+
+  const persistedFaves = JSON.parse(localStorage.getItem('faves'));
+
+  useEffect(() => {
+    setFaves(persistedFaves ? persistedFaves : []);
+  }, [setFaves]);
 
   const handleChange = (e) => {
     setSearch(e.target.value);
@@ -55,12 +55,11 @@ const HeroesContainer = () => {
       data={filterAndSortProducts({ data, search, sort, faves, showFave })}
       showFave={showFave}
       handleChange={(e) => handleChange(e)}
-      handleFaves={handleFaves({ faves, setFaves })}
-      isFave={isFave(faves)}
       value={search}
       setShowFave={() => setShowFave((state) => !state)}
       sortData={() => setSort((state) => !state)}
       sort={sort}
+      handleCharacterInfoPage={handleCharacterInfoPage(history)}
     />
   );
 };
