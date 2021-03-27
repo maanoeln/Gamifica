@@ -68,13 +68,14 @@ const HeroesComponent = ({
         />
       ))}
     </Grid>
-
-    <PaginationContainer
-      totalPages={totalPages}
-      handlePage={handlePage}
-      handleSetPage={handleSetPage}
-      activePage={activePage}
-    />
+    {showFave && (
+      <PaginationContainer
+        totalPages={totalPages}
+        handlePage={handlePage}
+        handleSetPage={handleSetPage}
+        activePage={activePage}
+      />
+    )}
   </Container>
 );
 
