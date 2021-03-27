@@ -1,7 +1,7 @@
-import { Star, StarOutline } from '@material-ui/icons';
 import { PropTypes } from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
+import FaveContainer from '../containers/FaveContainer';
 
 const FaveIcon = styled.div`
   position: relative;
@@ -14,12 +14,16 @@ const FaveIcon = styled.div`
 `;
 
 const CardContainer = styled.div`
-  width: 300px;
-  height: 500px;
+  width: 250px;
+  max-height: 330px;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.16);
+
+  :hover {
+    cursor: pointer;
+  }
 
   &:hover ${FaveIcon} {
     display: flex;
@@ -29,31 +33,31 @@ const CardContainer = styled.div`
 
 const ThumbnailContainer = styled.div`
   border-radius: 8px 8px 0 0;
-  width: 300px;
-  height: 450px;
+  width: 250px;
+  height: 250px;
   background-size: cover;
   background-image: ${({ imgUrl }) => `url("${imgUrl}")`};
 `;
 
-const CharacterName = styled.h2`
-  align-self: center;
-  margin: 20px 0;
+const CharacterName = styled.p`
+  text-align: center;
+  height: calc(100% - 250px);
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  margin: 10px auto;
 `;
 
-const HeroesCardComponent = ({ data, handleFaves, isFave }) => {
-  const { thumbnail, name } = data;
+const HeroesCardComponent = ({ data, handleCharacterInfoPage }) => {
+  const { id, thumbnail, name } = data;
 
-  const imageUrl = `${thumbnail.path}/portrait_uncanny.${thumbnail.extension}`;
+  const imageUrl = `${thumbnail.path}/standard_fantastic.${thumbnail.extension}`;
 
   return (
-    <CardContainer>
+    <CardContainer onClick={handleCharacterInfoPage}>
       <ThumbnailContainer imgUrl={imageUrl}>
         <FaveIcon>
-          {isFave() ? (
-            <Star fontSize="large" onClick={handleFaves} />
-          ) : (
-            <StarOutline fontSize="large" onClick={handleFaves} />
-          )}
+          <FaveContainer id={id} />
         </FaveIcon>
       </ThumbnailContainer>
 
@@ -64,8 +68,6 @@ const HeroesCardComponent = ({ data, handleFaves, isFave }) => {
 
 HeroesCardComponent.protoTypes = {
   data: PropTypes.shape({}).isRequired,
-  handleFaves: PropTypes.func.isRequired,
-  isFave: PropTypes.bool.isRequired,
 };
 
 export default HeroesCardComponent;
