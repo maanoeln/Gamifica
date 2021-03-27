@@ -68,6 +68,7 @@ const HeroesCardComponent = ({ data, handleCharacterInfoPage }) => {
 
 HeroesCardComponent.protoTypes = {
   data: PropTypes.shape({}).isRequired,
+  handleCharacterInfoPage: PropTypes.func.isRequired,
 };
 
 export default HeroesCardComponent;

@@ -1,3 +1,4 @@
+import { PropTypes } from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 import FaveContainer from '../containers/FaveContainer';
@@ -94,6 +95,7 @@ const LastComics = styled.div`
     width: 300px;
   }
 `;
+
 const HeroesInfoComponent = ({ character, comics }) => {
   const { id, name, description, thumbnail } = character;
 
@@ -128,7 +130,7 @@ const HeroesInfoComponent = ({ character, comics }) => {
               comics.map(
                 ({ title }, idx) =>
                   idx < 10 && (
-                    <LastComics key={id}>
+                    <LastComics key={`${idx}-${title}`}>
                       <h3>{title}</h3>
                     </LastComics>
                   )
@@ -141,6 +143,11 @@ const HeroesInfoComponent = ({ character, comics }) => {
       </InfoContainer>
     </Container>
   );
+};
+
+HeroesInfoComponent.propTypes = {
+  character: PropTypes.shape({}).isRequired,
+  comics: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 export default HeroesInfoComponent;
