@@ -6,19 +6,28 @@ import styled from 'styled-components';
 const Hover = styled.div`
   cursor: pointer;
 `;
-const FaveComponent = ({ isFave, handleFaves }) => {
+const FaveComponent = ({ id, isFave, handleFaves }) => {
   return (
     <Hover>
       {isFave() ? (
-        <Star fontSize="large" onClick={(e) => handleFaves(e)} />
+        <Star
+          data-testid={`unfave${id}`}
+          fontSize="large"
+          onClick={(e) => handleFaves(e)}
+        />
       ) : (
-        <StarOutline fontSize="large" onClick={(e) => handleFaves(e)} />
+        <StarOutline
+          data-testid={`fave${id}`}
+          fontSize="large"
+          onClick={(e) => handleFaves(e)}
+        />
       )}
     </Hover>
   );
 };
 
 FaveComponent.propTypes = {
+  id: PropTypes.number.isRequired,
   isFave: PropTypes.func.isRequired,
   handleFaves: PropTypes.func.isRequired,
 };
