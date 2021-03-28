@@ -1,5 +1,6 @@
 import { PropTypes } from 'prop-types';
 import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import HeroesInfoComponent from '../components/HeroesInfoComponent';
 import api from '../services/api';
 
@@ -33,19 +34,17 @@ const HeroesInfoContainer = ({
       .then((response) => {
         setCharacter(response.data.data.results[0]);
       })
-      .catch((e) => console.log(e));
-  }, [id]);
+      .catch((e) => toast.error('Erro ao buscar os dados'));
 
-  useEffect(() => {
-    if (character) {
-      api
-        .get(character.comics.collectionURI)
-        .then((response) => {
-          setComics(response.data.data.results);
-        })
-        .catch((e) => console.log(e));
-    }
-  }, [character]);
+    api
+      .get(`/characters/${id}/comics`)
+      .then((response) => {
+        setComics(response.data.data.results);
+      })
+      .catch((e) => {
+        toast.error('Erro ao buscar os dados');
+      });
+  }, [id]);
 
   return character && comics ? (
     <HeroesInfoComponent
