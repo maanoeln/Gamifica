@@ -1,6 +1,7 @@
 import { PropTypes } from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
+import PaginationContainer from '../containers/PaginationContainer';
 import HeroesCardComponent from './HeroesCardComponent';
 import SearchBarComponent from './SearchBarComponent';
 
@@ -36,13 +37,17 @@ const Grid = styled.div`
 `;
 
 const HeroesComponent = ({
+  activePage,
   data,
   handleChange,
   handleCharacterInfoPage,
+  handlePage,
+  handleSetPage,
   setShowFave,
   showFave,
   sort,
   sortData,
+  totalPages,
   value,
 }) => {
   return (
@@ -64,18 +69,29 @@ const HeroesComponent = ({
           />
         ))}
       </Grid>
+
+      <PaginationContainer
+        totalPages={totalPages}
+        handlePage={handlePage}
+        handleSetPage={handleSetPage}
+        activePage={activePage}
+      />
     </Container>
   );
 };
 
 HeroesComponent.propTypes = {
+  activePage: PropTypes.number.isRequired,
   data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   handleChange: PropTypes.func.isRequired,
   handleCharacterInfoPage: PropTypes.func.isRequired,
+  handlePage: PropTypes.func.isRequired,
+  handleSetPage: PropTypes.func.isRequired,
   setShowFave: PropTypes.func.isRequired,
   showFave: PropTypes.bool.isRequired,
   sort: PropTypes.bool.isRequired,
   sortData: PropTypes.func.isRequired,
+  totalPages: PropTypes.number.isRequired,
   value: PropTypes.string.isRequired,
 };
 
