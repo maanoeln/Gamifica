@@ -29,13 +29,36 @@ const HeroesContainer = ({ history }) => {
   const [sort, setSort] = useState(false);
   const [showFave, setShowFave] = useState(false);
   const { faves, setFaves } = useFave();
+  const [totalCharacters, setTotalCharacters] = useState(0);
+  const [activePage, setActivePage] = useState(1);
+
+  const totalPages = Math.floor(totalCharacters / 20);
 
   useEffect(() => {
     api
-      .get('/characters')
-      .then((response) => setData(response.data.data.results))
-      .catch((error) => console.log(error));
-  }, []);
+      .get('/characters', {
+        params: { offset: activePage === 1 ? 0 : 20 * activePage },
+      })
+      .then((response) => {
+        setTotalCharacters(response.data.data.total);
+        setData(response.data.data.results);
+      })
+      .catch((error) => alert('Erro ao buscar os dados'));
+  }, [activePage]);
+
+  const handlePage = ({ type, page }) => {
+    if (type === 'FORWARD') {
+      setActivePage(activePage + 1 > totalPages ? page : page + 1);
+    }
+
+    if (type === 'BACKWARD') {
+      setActivePage(activePage - 1 <= 0 ? page : page - 1);
+    }
+  };
+
+  const handleSetActivePage = (page) => {
+    setActivePage(page);
+  };
 
   if (faves.length) {
     localStorage.setItem('faves', JSON.stringify(faves));
@@ -62,6 +85,10 @@ const HeroesContainer = ({ history }) => {
       sortData={() => setSort((state) => !state)}
       sort={sort}
       handleCharacterInfoPage={handleCharacterInfoPage(history)}
+      totalPages={totalPages}
+      handlePage={handlePage}
+      handleSetPage={handleSetActivePage}
+      activePage={activePage}
     />
   );
 };
