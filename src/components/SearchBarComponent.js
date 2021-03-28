@@ -68,7 +68,7 @@ const FilterContainer = styled.div`
 `;
 
 const CustomStar = styled(Star)`
-  color: ${({ isClicked }) => (isClicked ? '#20a9fe' : '#fffffc')};
+  color: ${({ $isSelected }) => ($isSelected ? '#20a9fe' : '#fffffc')};
 
   :hover {
     cursor: pointer;
@@ -76,7 +76,7 @@ const CustomStar = styled(Star)`
 `;
 
 const CustomAlpha = styled(SortByAlpha)`
-  color: ${({ isClicked }) => (isClicked ? '#20a9fe' : '#fffffc')};
+  color: ${({ $isSelected }) => ($isSelected ? '#20a9fe' : '#fffffc')};
 
   :hover {
     cursor: pointer;
@@ -104,11 +104,17 @@ const SearchBarComponent = ({
       </SearchInputContainer>
 
       <FilterContainer>
-        <CustomAlpha fontSize="large" isClicked={sort} onClick={sortData} />
+        <CustomAlpha
+          fontSize="large"
+          $isSelected={sort}
+          onClick={sortData}
+          data-testid={'sortData'}
+        />
         <CustomStar
           fontSize="large"
-          isClicked={showFave}
+          $isSelected={showFave}
           onClick={setShowFave}
+          data-testid={'getFaves'}
         />
       </FilterContainer>
     </SearchContainer>
