@@ -14,6 +14,54 @@ const Container = styled.div`
     align-items: center;
     flex-direction: column;
     width: 90%;
+    margin: 0 auto;
+  }
+`;
+
+const BackContainer = styled.div`
+  margin: 20px 20px 0;
+  display: none;
+
+  @media (min-width: 320px) and (max-width: 880px) {
+    display: flex;
+
+    button {
+      width: 100px;
+      background-color: white;
+      padding: 8px;
+      border-radius: 4px;
+      border: none;
+      box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.26);
+      outline: none;
+
+      :hover {
+        cursor: pointer;
+      }
+    }
+  }
+`;
+
+const BackBigScreen = styled(BackContainer)`
+  justify-content: flex-end;
+  margin: 20px 0;
+  display: flex;
+
+  button {
+    width: 100px;
+    background-color: white;
+    padding: 8px;
+    border-radius: 4px;
+    border: none;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.26);
+    outline: none;
+
+    :hover {
+      cursor: pointer;
+    }
+  }
+
+  @media (min-width: 320px) and (max-width: 880px) {
+    display: none;
   }
 `;
 
@@ -21,7 +69,7 @@ const PictureContainer = styled.div`
   align-self: center;
   width: 300px;
   height: 450px;
-  margin-right: 20px;
+  margin: 0 20px;
   background-image: ${({ imgUrl }) => `url("${imgUrl}")`};
   border-radius: 16px 0 16px 0;
 `;
@@ -96,58 +144,74 @@ const LastComics = styled.div`
   }
 `;
 
-const HeroesInfoComponent = ({ character, comics }) => {
+const HeroesInfoComponent = ({ character, comics, handleGoBack }) => {
   const { id, name, description, thumbnail } = character;
 
   const imageUrl = `${thumbnail.path}/portrait_uncanny.${thumbnail.extension}`;
 
   return (
-    <Container>
-      <PictureContainer imgUrl={imageUrl} />
+    <>
+      <BackContainer>
+        <button type="button" onClick={handleGoBack}>
+          Voltar
+        </button>
+      </BackContainer>
+      <Container>
+        <PictureContainer imgUrl={imageUrl} />
 
-      <InfoContainer>
-        <Row>
-          <SingleInfoContainer style={{ flex: 0.5 }}>
-            <p>Nome</p>
-            <h3>{name}</h3>
-          </SingleInfoContainer>
-          <FaveContainer id={id} />
-        </Row>
-
-        <SingleInfoContainer>
-          <p>Descrição</p>
-          <h3>
-            {description.length
-              ? description
-              : 'Não há descrição para esse personagem'}
-          </h3>
-        </SingleInfoContainer>
-
-        <SingleInfoContainer>
-          <p>Últimos quadrinhos</p>
+        <InfoContainer>
           <Row>
-            {comics.length > 0 ? (
-              comics.map(
-                ({ title }, idx) =>
-                  idx < 10 && (
-                    <LastComics key={`${idx}-${title}`}>
-                      <h3>{title}</h3>
-                    </LastComics>
-                  )
-              )
-            ) : (
-              <h3>Não há quadrinhos para esse personagem</h3>
-            )}
+            <SingleInfoContainer style={{ flex: 0.5 }}>
+              <p>Nome</p>
+              <h3>{name}</h3>
+            </SingleInfoContainer>
+            <FaveContainer id={id} />
           </Row>
-        </SingleInfoContainer>
-      </InfoContainer>
-    </Container>
+
+          <SingleInfoContainer>
+            <p>Descrição</p>
+            <h3>
+              {description.length
+                ? description
+                : 'Não há descrição para esse personagem'}
+            </h3>
+          </SingleInfoContainer>
+
+          <SingleInfoContainer>
+            <p>Últimos quadrinhos</p>
+            <Row>
+              {comics.length > 0 ? (
+                comics.map(
+                  ({ title }, idx) =>
+                    idx < 10 && (
+                      <LastComics key={`${idx}-${title}`}>
+                        <h3>{title}</h3>
+                      </LastComics>
+                    )
+                )
+              ) : (
+                <h3>Não há quadrinhos para esse personagem</h3>
+              )}
+            </Row>
+          </SingleInfoContainer>
+
+          <SingleInfoContainer>
+            <BackBigScreen>
+              <button type="button" onClick={handleGoBack}>
+                Voltar
+              </button>
+            </BackBigScreen>
+          </SingleInfoContainer>
+        </InfoContainer>
+      </Container>
+    </>
   );
 };
 
 HeroesInfoComponent.propTypes = {
   character: PropTypes.shape({}).isRequired,
   comics: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  handleGoBack: PropTypes.func.isRequired,
 };
 
 export default HeroesInfoComponent;
