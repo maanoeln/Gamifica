@@ -1,3 +1,4 @@
+import { PropTypes } from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import HeroesInfoComponent from '../components/HeroesInfoComponent';
 import api from '../services/api';
@@ -16,12 +17,15 @@ const sortComics = ({ comics }) =>
     .sort(sortData);
 
 const HeroesInfoContainer = ({
+  history,
   match: {
     params: { id },
   },
 }) => {
   const [character, setCharacter] = useState();
   const [comics, setComics] = useState();
+
+  const handleGoBack = () => history.goBack();
 
   useEffect(() => {
     api
@@ -47,10 +51,16 @@ const HeroesInfoContainer = ({
     <HeroesInfoComponent
       character={character}
       comics={sortComics({ comics })}
+      handleGoBack={handleGoBack}
     />
   ) : (
     'Loading...'
   );
+};
+
+HeroesInfoContainer.propTypes = {
+  history: PropTypes.shape({}).isRequired,
+  match: PropTypes.shape({}).isRequired,
 };
 
 export default HeroesInfoContainer;
