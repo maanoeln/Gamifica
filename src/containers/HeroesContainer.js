@@ -1,5 +1,6 @@
 import { PropTypes } from 'prop-types';
 import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import HeroesComponent from '../components/HeroesComponent';
 import { useFave } from '../context/FavesProvider';
 import api from '../services/api';
@@ -32,8 +33,6 @@ const HeroesContainer = ({ history }) => {
   const [totalCharacters, setTotalCharacters] = useState(0);
   const [activePage, setActivePage] = useState(1);
 
-  const totalPages = Math.floor(totalCharacters / 20);
-
   useEffect(() => {
     api
       .get('/characters', {
@@ -43,8 +42,10 @@ const HeroesContainer = ({ history }) => {
         setTotalCharacters(response.data.data.total);
         setData(response.data.data.results);
       })
-      .catch((error) => alert('Erro ao buscar os dados'));
+      .catch((error) => toast.error('Erro ao buscar os dados'));
   }, [activePage]);
+
+  const totalPages = Math.floor(totalCharacters / 20);
 
   const handlePage = ({ type, page }) => {
     if (type === 'FORWARD') {
