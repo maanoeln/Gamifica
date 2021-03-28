@@ -1,3 +1,4 @@
+import { PropTypes } from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import HeroesComponent from '../components/HeroesComponent';
 import { useFave } from '../context/FavesProvider';
@@ -63,6 +64,10 @@ const HeroesContainer = ({ history }) => {
       handleCharacterInfoPage={handleCharacterInfoPage(history)}
     />
   );
+};
+
+HeroesContainer.propTypes = {
+  history: PropTypes.shape({}).isRequired,
 };
 
 export default HeroesContainer;
