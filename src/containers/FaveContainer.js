@@ -6,7 +6,9 @@ import { useFave } from '../context/FavesProvider';
 const FaveContainer = ({ id }) => {
   const { handleFaves, isFave } = useFave();
 
-  return <FaveComponent isFave={isFave(id)} handleFaves={handleFaves(id)} />;
+  return (
+    <FaveComponent id={id} isFave={isFave(id)} handleFaves={handleFaves(id)} />
+  );
 };
 
 FaveContainer.propTypes = {
